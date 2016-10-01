@@ -10,13 +10,23 @@
 		FA337BD61D99CD1000666C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337BD51D99CD1000666C50 /* AppDelegate.swift */; };
 		FA337BD81D99CD1000666C50 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA337BD71D99CD1000666C50 /* GameScene.sks */; };
 		FA337BDA1D99CD1000666C50 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA337BD91D99CD1000666C50 /* Actions.sks */; };
-		FA337BDC1D99CD1000666C50 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337BDB1D99CD1000666C50 /* GameScene.swift */; };
-		FA337BDE1D99CD1000666C50 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337BDD1D99CD1000666C50 /* GameViewController.swift */; };
 		FA337BE11D99CD1000666C50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA337BDF1D99CD1000666C50 /* Main.storyboard */; };
 		FA337BE31D99CD1000666C50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA337BE21D99CD1000666C50 /* Assets.xcassets */; };
 		FA337BE61D99CD1000666C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA337BE41D99CD1000666C50 /* LaunchScreen.storyboard */; };
 		FA337BF11D99CD1000666C50 /* AsteroidsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337BF01D99CD1000666C50 /* AsteroidsTests.swift */; };
 		FA337BFC1D99CD1000666C50 /* AsteroidsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337BFB1D99CD1000666C50 /* AsteroidsUITests.swift */; };
+		FA337C0F1D9A0C0200666C50 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C0E1D9A0C0200666C50 /* GameScene.swift */; };
+		FA337C111D9A0C1800666C50 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C101D9A0C1800666C50 /* GameViewController.swift */; };
+		FA337C131D9A0C3200666C50 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C121D9A0C3200666C50 /* HomeScreen.swift */; };
+		FA337C191D9A0C8500666C50 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C141D9A0C8500666C50 /* CGFloat+Extensions.swift */; };
+		FA337C1A1D9A0C8500666C50 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C151D9A0C8500666C50 /* CGPoint+Extensions.swift */; };
+		FA337C1B1D9A0C8500666C50 /* AsteroidSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C161D9A0C8500666C50 /* AsteroidSprite.swift */; };
+		FA337C1C1D9A0C8500666C50 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C171D9A0C8500666C50 /* GameData.swift */; };
+		FA337C1D1D9A0C8500666C50 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C181D9A0C8500666C50 /* GameOverScene.swift */; };
+		FA337C1F1D9A0D1E00666C50 /* LevelFinishScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C1E1D9A0D1E00666C50 /* LevelFinishScene.swift */; };
+		FA337C211D9A0D3100666C50 /* LevelResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C201D9A0D3100666C50 /* LevelResults.swift */; };
+		FA337C231D9A0D4000666C50 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C221D9A0D4000666C50 /* MyUtils.swift */; };
+		FA337C251D9A1BDB00666C50 /* ShipSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C241D9A1BDB00666C50 /* ShipSprite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +51,6 @@
 		FA337BD51D99CD1000666C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA337BD71D99CD1000666C50 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		FA337BD91D99CD1000666C50 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		FA337BDB1D99CD1000666C50 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		FA337BDD1D99CD1000666C50 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		FA337BE01D99CD1000666C50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA337BE21D99CD1000666C50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA337BE51D99CD1000666C50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +61,18 @@
 		FA337BF71D99CD1000666C50 /* AsteroidsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsteroidsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA337BFB1D99CD1000666C50 /* AsteroidsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidsUITests.swift; sourceTree = "<group>"; };
 		FA337BFD1D99CD1000666C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA337C0E1D9A0C0200666C50 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		FA337C101D9A0C1800666C50 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		FA337C121D9A0C3200666C50 /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		FA337C141D9A0C8500666C50 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		FA337C151D9A0C8500666C50 /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		FA337C161D9A0C8500666C50 /* AsteroidSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsteroidSprite.swift; sourceTree = "<group>"; };
+		FA337C171D9A0C8500666C50 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		FA337C181D9A0C8500666C50 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		FA337C1E1D9A0D1E00666C50 /* LevelFinishScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelFinishScene.swift; sourceTree = "<group>"; };
+		FA337C201D9A0D3100666C50 /* LevelResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelResults.swift; sourceTree = "<group>"; };
+		FA337C221D9A0D4000666C50 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		FA337C241D9A1BDB00666C50 /* ShipSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipSprite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +123,16 @@
 		FA337BD41D99CD1000666C50 /* Asteroids */ = {
 			isa = PBXGroup;
 			children = (
+				FA337C221D9A0D4000666C50 /* MyUtils.swift */,
+				FA337C171D9A0C8500666C50 /* GameData.swift */,
 				FA337BD51D99CD1000666C50 /* AppDelegate.swift */,
+				FA337C0D1D9A0A5800666C50 /* Scenes */,
+				FA337C0C1D9A0A4300666C50 /* Sprites */,
+				FA337C0B1D9A0A3C00666C50 /* Utils */,
+				FA337C0A1D9A0A2B00666C50 /* View Controller */,
+				FA337C091D9A0A2100666C50 /* Models */,
 				FA337BD71D99CD1000666C50 /* GameScene.sks */,
 				FA337BD91D99CD1000666C50 /* Actions.sks */,
-				FA337BDB1D99CD1000666C50 /* GameScene.swift */,
-				FA337BDD1D99CD1000666C50 /* GameViewController.swift */,
 				FA337BDF1D99CD1000666C50 /* Main.storyboard */,
 				FA337BE21D99CD1000666C50 /* Assets.xcassets */,
 				FA337BE41D99CD1000666C50 /* LaunchScreen.storyboard */,
@@ -132,6 +157,51 @@
 				FA337BFD1D99CD1000666C50 /* Info.plist */,
 			);
 			path = AsteroidsUITests;
+			sourceTree = "<group>";
+		};
+		FA337C091D9A0A2100666C50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA337C201D9A0D3100666C50 /* LevelResults.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FA337C0A1D9A0A2B00666C50 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA337C101D9A0C1800666C50 /* GameViewController.swift */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		FA337C0B1D9A0A3C00666C50 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA337C141D9A0C8500666C50 /* CGFloat+Extensions.swift */,
+				FA337C151D9A0C8500666C50 /* CGPoint+Extensions.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FA337C0C1D9A0A4300666C50 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				FA337C161D9A0C8500666C50 /* AsteroidSprite.swift */,
+				FA337C241D9A1BDB00666C50 /* ShipSprite.swift */,
+			);
+			name = Sprites;
+			sourceTree = "<group>";
+		};
+		FA337C0D1D9A0A5800666C50 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				FA337C181D9A0C8500666C50 /* GameOverScene.swift */,
+				FA337C121D9A0C3200666C50 /* HomeScreen.swift */,
+				FA337C0E1D9A0C0200666C50 /* GameScene.swift */,
+				FA337C1E1D9A0D1E00666C50 /* LevelFinishScene.swift */,
+			);
+			name = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,9 +343,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA337BDC1D99CD1000666C50 /* GameScene.swift in Sources */,
-				FA337BDE1D99CD1000666C50 /* GameViewController.swift in Sources */,
+				FA337C1F1D9A0D1E00666C50 /* LevelFinishScene.swift in Sources */,
+				FA337C131D9A0C3200666C50 /* HomeScreen.swift in Sources */,
+				FA337C191D9A0C8500666C50 /* CGFloat+Extensions.swift in Sources */,
+				FA337C211D9A0D3100666C50 /* LevelResults.swift in Sources */,
+				FA337C0F1D9A0C0200666C50 /* GameScene.swift in Sources */,
+				FA337C251D9A1BDB00666C50 /* ShipSprite.swift in Sources */,
+				FA337C111D9A0C1800666C50 /* GameViewController.swift in Sources */,
+				FA337C1A1D9A0C8500666C50 /* CGPoint+Extensions.swift in Sources */,
+				FA337C231D9A0D4000666C50 /* MyUtils.swift in Sources */,
+				FA337C1C1D9A0C8500666C50 /* GameData.swift in Sources */,
 				FA337BD61D99CD1000666C50 /* AppDelegate.swift in Sources */,
+				FA337C1D1D9A0C8500666C50 /* GameOverScene.swift in Sources */,
+				FA337C1B1D9A0C8500666C50 /* AsteroidSprite.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +610,7 @@
 				FA337C021D99CD1000666C50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA337C031D99CD1000666C50 /* Build configuration list for PBXNativeTarget "AsteroidsTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +619,7 @@
 				FA337C051D99CD1000666C50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA337C061D99CD1000666C50 /* Build configuration list for PBXNativeTarget "AsteroidsUITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +628,7 @@
 				FA337C081D99CD1000666C50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

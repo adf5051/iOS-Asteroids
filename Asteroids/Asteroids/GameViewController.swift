@@ -3,45 +3,84 @@
 //  Asteroids
 //
 //  Created by Alex Fuerst on 9/26/16.
-//  Copyright © 2016 Alex Fuerst. All rights reserved.
+//  Original Author: Tony Jefferson
 //
 
 import UIKit
 import SpriteKit
 import GameplayKit
 
+// The main game view controller
 class GameViewController: UIViewController {
 
+    // MARK: - ivars -
+    
+    // main game scene
+    var gameScene: GameScene?;
+    
+    // the main spriekit view
+    var skView:SKView!;
+    
+    // the screen size (iphone resolution)
+    let screenSize = CGSize(width:1080, height:1920);
+    
+    // the scalemode for spritekit
+    let scaleMode = SKSceneScaleMode.aspectFill;
+    
+    // the view has loaded
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
+        // reference this view as skview
+        skView = self.view as! SKView
+        
+        // fire up the intro screen
+        loadHomeScene();
+        
+        skView.ignoresSiblingOrder = true;
+        skView.showsFPS = GameData.debugMode;
+        skView.showsNodeCount = GameData.debugMode;
     }
-
+    
+    // load the intro screen
+    func loadHomeScene() {
+        let scene = HomeScreen(size:screenSize, scaleMode:scaleMode, sceneManager: self);
+        let reveal = SKTransition.crossFade(withDuration: 1);
+        skView.presentScene(scene, transition: reveal);
+    }
+    
+    // load the main game screen
+    func loadGameScene(levelNum:Int, totalScore:Int) {
+        gameScene = GameScene(size:screenSize, scaleMode: scaleMode, sceneManager: self);
+        let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1);
+        skView.presentScene(gameScene!, transition: reveal);
+    }
+    
+    // load the level screen
+    func loadLevelFinishScene(results:LevelResults) {
+        gameScene = nil;
+        let scene = LevelFinishScene(size: screenSize, scaleMode: scaleMode, results: results, sceneManager: self);
+        let reveal = SKTransition.crossFade(withDuration: 1);
+        skView.presentScene(scene,transition:reveal);
+    }
+    
+    // load the game over screen
+    func loadGameOverScene(results:LevelResults) {
+        gameScene = nil;
+        let scene = GameOverScene(size: screenSize, scaleMode: scaleMode, results: results, sceneManager: self);
+        let reveal = SKTransition.crossFade(withDuration: 1);
+        skView.presentScene(scene, transition: reveal);
+    }
+    
+    // prevent autorotation of screen
     override var shouldAutorotate: Bool {
-        return true
+        return false;
     }
 
+    // allow only portrait orientation
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return .portrait;
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +88,13 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
 
+    // hide the status bar
     override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    // let this app be the first responder for input and gestures
+    override var canBecomeFirstResponder: Bool {
         return true
     }
 }

@@ -3,7 +3,6 @@
 //  Asteroids
 //
 //  Created by Alex Fuerst on 9/26/16.
-//  Copyright © 2016 Alex Fuerst. All rights reserved.
 //
 
 import UIKit
