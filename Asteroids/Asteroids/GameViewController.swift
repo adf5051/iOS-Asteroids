@@ -41,6 +41,8 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true;
         skView.showsFPS = GameData.debugMode;
         skView.showsNodeCount = GameData.debugMode;
+        
+        self.becomeFirstResponder()
     }
     
     // load the intro screen
@@ -55,6 +57,7 @@ class GameViewController: UIViewController {
         gameScene = GameScene(size:screenSize, scaleMode: scaleMode, sceneManager: self);
         let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1);
         skView.presentScene(gameScene!, transition: reveal);
+        MotionMonitor.sharedMotionMonitor.startUpdates()
     }
     
     // load the level screen
@@ -63,6 +66,8 @@ class GameViewController: UIViewController {
         let scene = LevelFinishScene(size: screenSize, scaleMode: scaleMode, results: results, sceneManager: self);
         let reveal = SKTransition.crossFade(withDuration: 1);
         skView.presentScene(scene,transition:reveal);
+        
+        MotionMonitor.sharedMotionMonitor.stopUpdates()
     }
     
     // load the game over screen

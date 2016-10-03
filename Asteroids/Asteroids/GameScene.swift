@@ -117,7 +117,7 @@ class GameScene: SKScene {
     
     // make the player
     func makePlayerSprite() {
-        ship = ShipSprite(size: CGSize(width: 60, height:100));
+        ship = ShipSprite(size: CGSize(width: 60, height:100),screenBounds:playableRect);
         ship!.name = "player";
         ship!.position = CGPoint(x:self.size.width/2,y:self.size.height/2);
         ship!.fwd = CGPoint(x:0,y:1);
@@ -224,5 +224,6 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval){
         calculateDeltaTime(currentTime: currentTime);
         moveSpritesAndCheckCollisions(dt: CGFloat(dt));
+        ship?.update(dt: CGFloat(dt))
     }
 }

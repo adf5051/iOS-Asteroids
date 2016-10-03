@@ -27,6 +27,8 @@
 		FA337C211D9A0D3100666C50 /* LevelResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C201D9A0D3100666C50 /* LevelResults.swift */; };
 		FA337C231D9A0D4000666C50 /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C221D9A0D4000666C50 /* MyUtils.swift */; };
 		FA337C251D9A1BDB00666C50 /* ShipSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337C241D9A1BDB00666C50 /* ShipSprite.swift */; };
+		FAA2D6FC1DA1CB5900918FB8 /* MotionMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2D6FB1DA1CB5900918FB8 /* MotionMonitor.swift */; };
+		FAA2D6FE1DA1CB8300918FB8 /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA2D6FD1DA1CB8300918FB8 /* CGVector+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		FA337C201D9A0D3100666C50 /* LevelResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelResults.swift; sourceTree = "<group>"; };
 		FA337C221D9A0D4000666C50 /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 		FA337C241D9A1BDB00666C50 /* ShipSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShipSprite.swift; sourceTree = "<group>"; };
+		FAA2D6FB1DA1CB5900918FB8 /* MotionMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionMonitor.swift; sourceTree = "<group>"; };
+		FAA2D6FD1DA1CB8300918FB8 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		FA337BD41D99CD1000666C50 /* Asteroids */ = {
 			isa = PBXGroup;
 			children = (
+				FAA2D6FB1DA1CB5900918FB8 /* MotionMonitor.swift */,
 				FA337C221D9A0D4000666C50 /* MyUtils.swift */,
 				FA337C171D9A0C8500666C50 /* GameData.swift */,
 				FA337BD51D99CD1000666C50 /* AppDelegate.swift */,
@@ -179,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				FA337C141D9A0C8500666C50 /* CGFloat+Extensions.swift */,
+				FAA2D6FD1DA1CB8300918FB8 /* CGVector+Extensions.swift */,
 				FA337C151D9A0C8500666C50 /* CGPoint+Extensions.swift */,
 			);
 			name = Utils;
@@ -348,9 +354,11 @@
 				FA337C191D9A0C8500666C50 /* CGFloat+Extensions.swift in Sources */,
 				FA337C211D9A0D3100666C50 /* LevelResults.swift in Sources */,
 				FA337C0F1D9A0C0200666C50 /* GameScene.swift in Sources */,
+				FAA2D6FE1DA1CB8300918FB8 /* CGVector+Extensions.swift in Sources */,
 				FA337C251D9A1BDB00666C50 /* ShipSprite.swift in Sources */,
 				FA337C111D9A0C1800666C50 /* GameViewController.swift in Sources */,
 				FA337C1A1D9A0C8500666C50 /* CGPoint+Extensions.swift in Sources */,
+				FAA2D6FC1DA1CB5900918FB8 /* MotionMonitor.swift in Sources */,
 				FA337C231D9A0D4000666C50 /* MyUtils.swift in Sources */,
 				FA337C1C1D9A0C8500666C50 /* GameData.swift in Sources */,
 				FA337BD61D99CD1000666C50 /* AppDelegate.swift in Sources */,
