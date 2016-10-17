@@ -14,6 +14,8 @@ class HomeScreen: SKScene {
     // the view controller
     let sceneManager:GameViewController;
     
+    private var gameLabel: SKLabelNode!
+    private var helpLabel: SKLabelNode!
     
     //let button:SKLabelNode = SKLabelNode(fontNamed: GameData.font.mainFont);
     
@@ -42,25 +44,42 @@ class HomeScreen: SKScene {
         Author.text = "By Alex Fuerst";
         
         Title.fontSize = GameData.hud.fontSize;
-        Author.fontSize = GameData.hud.fontSize;
+        Author.fontSize = GameData.hud.smallFont;
         
-        Title.position = CGPoint(x:size.width/2, y:size.height/2 + 100);
-        Author.position = CGPoint(x:size.width/2, y:size.height/2);
+        Title.position = CGPoint(x:size.width/2, y:size.height/2 + 180);
+        Author.position = CGPoint(x:size.width/2, y:size.height/2 + 140);
         
         Title.zPosition = 1;
         Author.zPosition = 1;
         addChild(Title);
         addChild(Author);
         
-        let prompt = SKLabelNode(fontNamed: GameData.font.mainFont);
-        prompt.text = "Tap to continue";
-        prompt.fontSize = GameData.hud.fontSize;
-        prompt.position = CGPoint(x:size.width/2, y:size.height/2 - 100);
-        addChild(prompt);
+        gameLabel = SKLabelNode(fontNamed: GameData.font.mainFont);
+        gameLabel.text = "Enter Space";
+        gameLabel.fontSize = GameData.hud.fontSize;
+        gameLabel.position = CGPoint(x:size.width/2, y:size.height/2);
+        addChild(gameLabel);
+        
+        helpLabel = SKLabelNode(fontNamed: GameData.font.mainFont);
+        helpLabel.text = "Flight Manual";
+        helpLabel.fontSize = GameData.hud.fontSize;
+        helpLabel.position = CGPoint(x:size.width/2, y:size.height/2 - 100);
+        addChild(helpLabel);
     }
     
     // move to the game screen when tapped
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        sceneManager.loadGameScene(levelNum: 1, totalScore: 0);
+        //sceneManager.loadGameScene(levelNum: 1, totalScore: 0);
+        if let touch = touches.first {
+            if gameLabel.frame.contains(touch.location(in: self)) {
+                sceneManager.loadGameScene()
+            }
+            if helpLabel.frame.contains(touch.location(in: self)) {
+                sceneManager.loadHelpScene()
+            }
+        }
+        
+        
+        //if gameLabel.frame.contains(touches[0])
     }
 }

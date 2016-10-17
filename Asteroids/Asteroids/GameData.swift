@@ -23,6 +23,7 @@ struct GameData{
     struct hud{
         static let backgroundColor = SKColor.black
         static let fontSize = CGFloat(64.0)
+        static let smallFont = CGFloat(32.0)
         static let fontColorWhite = SKColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.0)
         static let marginV = CGFloat(12.0)
         static let marginH = CGFloat(12.0)

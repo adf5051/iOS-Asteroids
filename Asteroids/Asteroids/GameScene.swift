@@ -11,12 +11,23 @@ import GameplayKit;
 // the main game screen and game loop
 class GameScene: SKScene {
     
+    var round:Int = 0
+    
     // the current score observer
     // updates the appropriate label when changed
     var levelScore:Int = 0 {
         didSet {
             if (levelScore > oldValue) {
                 scoreLabel.text = "Score: \(levelScore)";
+            }
+        }
+    }
+    
+    var lives:Int = 3 {
+        didSet {
+            livesLabel.text = "Lives: \(lives)"
+            if(lives <= 0) {
+                sceneManager.loadGameOverScene();
             }
         }
     }
@@ -33,7 +44,17 @@ class GameScene: SKScene {
     // bool used to start the movement of sprites
     private var spritesMoving = false;
     
-    private var tapCount = 0;
+    private var bulletsArr:[BulletSprite] = []
+    
+    private let bulletLife:CGFloat = 1
+    
+    private var asteroidArr:[AsteroidSprite] = [] {
+        didSet {
+            if asteroidArr.count <= 0 {
+                newRound()
+            }
+        }
+    }
     
     // the view controller
     private let sceneManager:GameViewController;
@@ -41,7 +62,7 @@ class GameScene: SKScene {
     // label for displaying the current score
     private let scoreLabel = SKLabelNode(fontNamed: GameData.font.mainFont);
     
-    private let otherLabel = SKLabelNode(fontNamed: GameData.font.mainFont);
+    private let livesLabel = SKLabelNode(fontNamed: GameData.font.mainFont);
     
     // the player sprite
     private var ship:ShipSprite?;
@@ -62,9 +83,15 @@ class GameScene: SKScene {
     // set up this view when loaded
     override func didMove(to view: SKView) {
         setupUI();
-        makeAsteroidSprite(howMany: 5);
         makePlayerSprite();
-        unpauseSprites();
+        newRound()
+        let backgroundMusic = SKAudioNode(fileNamed: "Music.wav")
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
+        let stars = SKEmitterNode(fileNamed: "stars.sks")
+        stars!.zPosition = 0;
+        stars!.position = CGPoint(x:self.size.width/2,y:self.size.height/2);
+        addChild(stars!)
     }
     
     deinit {
@@ -72,6 +99,33 @@ class GameScene: SKScene {
     }
     
     // MARK: - Helpers -
+    
+    private func newRound() {
+        
+        if asteroidArr.count > 0 {
+            for asteroid in asteroidArr {
+                asteroid.removeFromParent()
+            }
+            asteroidArr = []
+        }
+        
+        if bulletsArr.count > 0 {
+            for bullet in bulletsArr {
+                bullet.removeFromParent()
+            }
+            bulletsArr = []
+        }
+        
+        spritesMoving = false
+        ship?.pause()
+        ship?.position = CGPoint(x:self.size.width/2,y:self.size.height/2);
+        ship?.fwd = CGPoint(x:0,y:1);
+        ship?.zRotation = 0
+        makeAsteroidSprite(howMany: 3);
+        unpauseSprites();
+        
+        round += 1
+    }
     
     // Set up the HUD for the game
     private func setupUI() {
@@ -104,15 +158,13 @@ class GameScene: SKScene {
         scoreLabel.position = CGPoint(x: playableRect.maxX - scoreLabelWidth - marginH, y:playableRect.maxY - marginV);
         addChild(scoreLabel);
         
-        /*
-        otherLabel.fontColor = fontColor;
-        otherLabel.fontSize = fontSize;
-        otherLabel.position = CGPoint(x:marginH, y: playableRect.minY + marginV);
-        otherLabel.verticalAlignmentMode = .bottom;
-        otherLabel.horizontalAlignmentMode = .left;
-        otherLabel.text = "Numb Sprites: 0";
-        addChild(otherLabel);
-         */
+        livesLabel.fontColor = fontColor;
+        livesLabel.fontSize = fontSize;
+        livesLabel.position = CGPoint(x:marginH, y: playableRect.maxY - marginV);
+        livesLabel.verticalAlignmentMode = .top;
+        livesLabel.horizontalAlignmentMode = .left;
+        livesLabel.text = "Lives: \(lives)";
+        addChild(livesLabel);
     }
     
     // make the player
@@ -122,6 +174,7 @@ class GameScene: SKScene {
         ship!.position = CGPoint(x:self.size.width/2,y:self.size.height/2);
         ship!.fwd = CGPoint(x:0,y:1);
         addChild(ship!);
+        ship!.pause();
     }
     
     // create a givent number of asteroid instances from an optional parent
@@ -131,18 +184,18 @@ class GameScene: SKScene {
             
             // if the parent asteroid is nil assume we are starting the level and create large asteroids
             if parentAsteroid == nil {
-                s = AsteroidSprite(screenBounds:playableRect,sizeState:AsteroidSprite.SizeState.Large, level: 0);
+                s = AsteroidSprite(screenBounds:playableRect,sizeState:AsteroidSprite.SizeState.Large, level: round);
                 s.position = randomCGPointOutsideRect(playableRect);
             } else {
                 
                 // grab the size of the parent asteroid and make the new asteroid one smaller
                 switch parentAsteroid!.getSizeState() {
                 case .Large:
-                    s = AsteroidSprite(screenBounds:playableRect,sizeState:AsteroidSprite.SizeState.Medium, level: 0);
+                    s = AsteroidSprite(screenBounds:playableRect,sizeState:AsteroidSprite.SizeState.Medium, level: round);
                     s.position = parentAsteroid!.position;
                     break;
                 case .Medium:
-                    s = AsteroidSprite(screenBounds:playableRect,sizeState:AsteroidSprite.SizeState.Small, level: 0);
+                    s = AsteroidSprite(screenBounds:playableRect,sizeState:AsteroidSprite.SizeState.Small, level: round);
                     s.position = parentAsteroid!.position;
                     break
                 default: // the parent was too small, so bail out and don't make more asteroids
@@ -155,6 +208,7 @@ class GameScene: SKScene {
             // eventually swap this with a random vector closer in direction to the direction of the parent asteroid
             s.fwd = CGPoint.randomUnitVector();
             addChild(s);
+            asteroidArr.append(s)
         }
     }
     
@@ -174,25 +228,62 @@ class GameScene: SKScene {
         // only move when the sprites aren't paused
         if (spritesMoving) {
             
+            for (index, bullet) in bulletsArr.enumerated() {
+                bullet.update(dt: dt)
+                if(bullet.life > bulletLife) {
+                    bullet.removeFromParent()
+                    bulletsArr.remove(at: index)
+                }
+            }
+            
             // find all the asteroids
-            enumerateChildNodes(withName: "asteroid", using: {
-                node, stop in
-                
-                // grab the asteroid
-                let s = node as! AsteroidSprite
+            for (i, asteroid) in asteroidArr.enumerated() {
                 
                 // update the asteroid
-                s.update(dt: dt);
+                asteroid.update(dt: dt);
+                for (j, bullet) in self.bulletsArr.enumerated() {
+                    
+                    // handle if the asteroid is colliding with the ship
+                    if asteroid.isColliding(position: bullet.position, radius: bullet.radius) {
+                        self.makeAsteroidSprite(howMany: 2, parentAsteroid: asteroid)
+                        
+                        self.levelScore += asteroid.getPointValue();
+                        
+                        asteroid.removeFromParent()
+                        
+                        // just in case
+                        if asteroidArr.count > i {
+                            self.asteroidArr.remove(at: i)
+                        }
+                        
+                        bullet.removeFromParent()
+                        
+                        // idk why this is needed, but j will be greater than the count (how?) when it is the last asteroid you shoot sometimes
+                        if bulletsArr.count > j {
+                            self.bulletsArr.remove(at: j)
+                        }
+                        
+                        continue
+                    }
+                }
                 
                 // handle if the asteroid is colliding with the ship
-                if s.isColliding(position: self.ship!.position, radius: self.ship!.radius) {
-                    self.makeAsteroidSprite(howMany: 2, parentAsteroid: s)
+                if !ship!.invincible && asteroid.isColliding(position: self.ship!.position, radius: self.ship!.getRadius()) {
+                    self.makeAsteroidSprite(howMany: 2, parentAsteroid: asteroid)
                     
-                    self.levelScore += s.getPointValue();
+                    self.levelScore += asteroid.getPointValue();
                     
-                    node.removeFromParent()
+                    asteroid.removeFromParent()
+                    self.asteroidArr.remove(at: i)
+                    
+                    ship?.invincible = true;
+                    ship?.position = CGPoint(x:self.size.width/2,y:self.size.height/2);
+                    ship?.fwd = CGPoint(x:0,y:1);
+                    ship?.zRotation = 0
+                    lives -= 1
                 }
-            })
+                
+            }
         }
     }
     
@@ -200,7 +291,7 @@ class GameScene: SKScene {
     func unpauseSprites() {
         let unpauseAction = SKAction.sequence([
             SKAction.wait(forDuration: 2),
-            SKAction.run({self.spritesMoving = true})
+            SKAction.run({self.spritesMoving = true; self.ship?.unPause()})
             ]);
         run(unpauseAction);
     }
@@ -208,15 +299,14 @@ class GameScene: SKScene {
     // MARK: - Events -
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        tapCount = tapCount + 1;
-        if(tapCount < 3) {
-            return;
+        if bulletsArr.count < 10 && spritesMoving {
+            let bullet = BulletSprite(screenBounds: playableRect, fwd: ship!.fwd)
+            bullet.name = "bullet";
+            bullet.position = ship!.position;
+            addChild(bullet);
+            run(SKAction.playSoundFileNamed("gun.wav", waitForCompletion: false))
+            bulletsArr.append(bullet)
         }
-        
-        
-        //let results = LevelResults(msg: "Game Over");
-        //sceneManager.loadGameOverScene(results: results);
-        
     }
     
     // MARK: - Game Loop

@@ -53,7 +53,7 @@ class GameViewController: UIViewController {
     }
     
     // load the main game screen
-    func loadGameScene(levelNum:Int, totalScore:Int) {
+    func loadGameScene() {
         gameScene = GameScene(size:screenSize, scaleMode: scaleMode, sceneManager: self);
         let reveal = SKTransition.doorsOpenHorizontal(withDuration: 1);
         skView.presentScene(gameScene!, transition: reveal);
@@ -71,11 +71,18 @@ class GameViewController: UIViewController {
     }
     
     // load the game over screen
-    func loadGameOverScene(results:LevelResults) {
+    func loadGameOverScene() {
         gameScene = nil;
-        let scene = GameOverScene(size: screenSize, scaleMode: scaleMode, results: results, sceneManager: self);
+        let scene = GameOverScene(size: screenSize, scaleMode: scaleMode, sceneManager: self);
         let reveal = SKTransition.crossFade(withDuration: 1);
         skView.presentScene(scene, transition: reveal);
+    }
+    
+    func loadHelpScene() {
+        gameScene = nil;
+        let scene = HelpScene(size: screenSize, scaleMode: scaleMode, sceneManager: self)
+        let reveal = SKTransition.doorsCloseVertical(withDuration: 1)
+        skView.presentScene(scene, transition: reveal)
     }
     
     // prevent autorotation of screen

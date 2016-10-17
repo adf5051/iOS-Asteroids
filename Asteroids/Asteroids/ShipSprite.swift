@@ -10,11 +10,38 @@ import SpriteKit
 
 class ShipSprite:SKShapeNode{
     var fwd:CGPoint = CGPoint(x:0.0,y:1.0);
-    var velocity:CGPoint = CGPoint.zero;
-    var velocityMag:CGFloat = 3.0;
-    var hit:Bool = false;
-    var radius:CGFloat;
-    let screenBounds:CGRect;
+    
+    var velocity:CGPoint = CGPoint.zero {
+        didSet {
+            if(velocity.length() >= velocityMag) {
+                velocity = velocity.normalized() * velocityMag
+            }
+        }
+    }
+    private let velocityMag:CGFloat = 200.0;
+    private let rotationScalar:Int = 4;
+    private let radius:CGFloat;
+    private let screenBounds:CGRect;
+    private let friction:CGFloat = 0.09
+    private var spritesPaused:Bool = true;
+    private let invAnimation:SKAction = SKAction.sequence([SKAction.fadeOut(withDuration: 0.2), SKAction.fadeIn(withDuration: 0.2)]
+)
+    var invincible:Bool = false {
+        didSet {
+            if invincible {
+                run(SKAction.repeat(invAnimation, count: Int(maxInvTime/CGFloat(invAnimation.duration))))
+            }
+        }
+    }
+    private let maxInvTime:CGFloat = 3.0
+    private var timeInv:CGFloat = 0 {
+        didSet {
+            if timeInv >= maxInvTime {
+                timeInv = 0
+                invincible = false
+            }
+        }
+    }
     
     init(size:CGSize,screenBounds:CGRect){
         radius = size.width/2.0;
@@ -44,45 +71,68 @@ class ShipSprite:SKShapeNode{
         self.strokeColor = SKColor.red;
         self.lineWidth = 10;
         self.fillColor = SKColor.clear;
+        velocity = fwd;
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented");
     }
     
+    func getRadius() -> CGFloat {
+        return radius
+    }
+    
+    func pause() {
+        spritesPaused = true;
+    }
+    
+    func unPause() {
+        spritesPaused = false;
+    }
+    
     func update(dt:CGFloat) {
-        let gv = MotionMonitor.sharedMotionMonitor.gravityVectorNormalized
-        var yVel = gv.dy
-        yVel = yVel < -0.33 ? -0.33 : yVel
-        yVel = yVel > 0.33 ? 0.33 : yVel
-        
-        if abs(yVel) < 0.1 {
-            yVel = 0
-        } else {
-            yVel = (yVel * 15) * CGFloat.pi / 180.0
+        if !spritesPaused {
+            
+            if invincible {
+                timeInv += dt;
+            }
+            
+            let gv = MotionMonitor.sharedMotionMonitor.gravityVectorNormalized
+            var yVel = gv.dy
+            yVel = yVel < -0.33 ? -0.33 : yVel
+            yVel = yVel > 0.33 ? 0.33 : yVel
+            
+            if abs(yVel) < 0.1 {
+                yVel = 0
+            } else {
+                yVel = (CGFloat(rotationScalar) * yVel * 100) * CGFloat.pi / 180.0
+            }
+            
+            zRotation -= yVel * dt;
+            
+            // this should ultimately check to see which orientation the phone is being held
+            fwd.rotate(byRad: -yVel * dt)
+            velocity.rotate(byRad: -yVel * dt)
+            
+            var xVel = gv.dx - 0.6
+            xVel = xVel < -0.33 ? -0.33 : xVel
+            xVel = xVel > 0.33 ? 0.33 : xVel
+            
+            // again, this should check orientation before assuming it should flip the value
+            xVel = -xVel
+            
+            if xVel < 0.1 {
+                xVel = 0
+            }
+            
+            xVel *= 3
+            
+            velocity = fwd * xVel * velocityMag * dt;
+            
+            position = velocity + position
+            
+            checkBounds()
         }
-        
-        zRotation -= yVel;
-        
-        // this should ultimately check to see which orientation the phone is being held
-        fwd.rotate(byRad: -yVel)
-        
-        var xVel = gv.dx - 0.6
-        xVel = xVel < -0.33 ? -0.33 : xVel
-        xVel = xVel > 0.33 ? 0.33 : xVel
-        
-        // again, this should check orientation before assuming it should flip the value
-        xVel = -xVel
-        
-        if xVel < 0.1 {
-            xVel = 0
-        }
-        
-        xVel *= 3
-        
-        position = fwd * xVel * velocityMag + position
-        
-        checkBounds()
     }
     
     // check to see if the asteroid has gone off screen and wrap it back around

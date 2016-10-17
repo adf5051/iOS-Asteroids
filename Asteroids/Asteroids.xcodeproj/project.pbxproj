@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1AB5FC1DB310BD00600F09 /* BulletSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AB5FB1DB310BD00600F09 /* BulletSprite.swift */; };
+		FA1AB5FE1DB47CC800600F09 /* HelpScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1AB5FD1DB47CC800600F09 /* HelpScene.swift */; };
+		FA1AB6001DB5304100600F09 /* Music.wav in Resources */ = {isa = PBXBuildFile; fileRef = FA1AB5FF1DB5304100600F09 /* Music.wav */; };
+		FA1AB6021DB530F400600F09 /* gun.wav in Resources */ = {isa = PBXBuildFile; fileRef = FA1AB6011DB530F400600F09 /* gun.wav */; };
+		FA1AB6051DB5337600600F09 /* stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA1AB6031DB5337600600F09 /* stars.sks */; };
+		FA1AB6061DB5337600600F09 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = FA1AB6041DB5337600600F09 /* spark.png */; };
 		FA337BD61D99CD1000666C50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA337BD51D99CD1000666C50 /* AppDelegate.swift */; };
 		FA337BD81D99CD1000666C50 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA337BD71D99CD1000666C50 /* GameScene.sks */; };
 		FA337BDA1D99CD1000666C50 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FA337BD91D99CD1000666C50 /* Actions.sks */; };
@@ -49,6 +55,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA1AB5FB1DB310BD00600F09 /* BulletSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSprite.swift; sourceTree = "<group>"; };
+		FA1AB5FD1DB47CC800600F09 /* HelpScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpScene.swift; sourceTree = "<group>"; };
+		FA1AB5FF1DB5304100600F09 /* Music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Music.wav; sourceTree = "<group>"; };
+		FA1AB6011DB530F400600F09 /* gun.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gun.wav; sourceTree = "<group>"; };
+		FA1AB6031DB5337600600F09 /* stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = stars.sks; sourceTree = "<group>"; };
+		FA1AB6041DB5337600600F09 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		FA337BD21D99CD1000666C50 /* Asteroids.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Asteroids.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA337BD51D99CD1000666C50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA337BD71D99CD1000666C50 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -127,6 +139,8 @@
 		FA337BD41D99CD1000666C50 /* Asteroids */ = {
 			isa = PBXGroup;
 			children = (
+				FA1AB6011DB530F400600F09 /* gun.wav */,
+				FA1AB5FF1DB5304100600F09 /* Music.wav */,
 				FAA2D6FB1DA1CB5900918FB8 /* MotionMonitor.swift */,
 				FA337C221D9A0D4000666C50 /* MyUtils.swift */,
 				FA337C171D9A0C8500666C50 /* GameData.swift */,
@@ -193,8 +207,11 @@
 		FA337C0C1D9A0A4300666C50 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				FA1AB6041DB5337600600F09 /* spark.png */,
+				FA1AB6031DB5337600600F09 /* stars.sks */,
 				FA337C161D9A0C8500666C50 /* AsteroidSprite.swift */,
 				FA337C241D9A1BDB00666C50 /* ShipSprite.swift */,
+				FA1AB5FB1DB310BD00600F09 /* BulletSprite.swift */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -206,6 +223,7 @@
 				FA337C121D9A0C3200666C50 /* HomeScreen.swift */,
 				FA337C0E1D9A0C0200666C50 /* GameScene.swift */,
 				FA337C1E1D9A0D1E00666C50 /* LevelFinishScene.swift */,
+				FA1AB5FD1DB47CC800600F09 /* HelpScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -320,10 +338,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1AB6021DB530F400600F09 /* gun.wav in Resources */,
+				FA1AB6061DB5337600600F09 /* spark.png in Resources */,
 				FA337BE11D99CD1000666C50 /* Main.storyboard in Resources */,
 				FA337BD81D99CD1000666C50 /* GameScene.sks in Resources */,
 				FA337BE31D99CD1000666C50 /* Assets.xcassets in Resources */,
 				FA337BE61D99CD1000666C50 /* LaunchScreen.storyboard in Resources */,
+				FA1AB6051DB5337600600F09 /* stars.sks in Resources */,
+				FA1AB6001DB5304100600F09 /* Music.wav in Resources */,
 				FA337BDA1D99CD1000666C50 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +375,7 @@
 				FA337C131D9A0C3200666C50 /* HomeScreen.swift in Sources */,
 				FA337C191D9A0C8500666C50 /* CGFloat+Extensions.swift in Sources */,
 				FA337C211D9A0D3100666C50 /* LevelResults.swift in Sources */,
+				FA1AB5FE1DB47CC800600F09 /* HelpScene.swift in Sources */,
 				FA337C0F1D9A0C0200666C50 /* GameScene.swift in Sources */,
 				FAA2D6FE1DA1CB8300918FB8 /* CGVector+Extensions.swift in Sources */,
 				FA337C251D9A1BDB00666C50 /* ShipSprite.swift in Sources */,
@@ -361,6 +384,7 @@
 				FAA2D6FC1DA1CB5900918FB8 /* MotionMonitor.swift in Sources */,
 				FA337C231D9A0D4000666C50 /* MyUtils.swift in Sources */,
 				FA337C1C1D9A0C8500666C50 /* GameData.swift in Sources */,
+				FA1AB5FC1DB310BD00600F09 /* BulletSprite.swift in Sources */,
 				FA337BD61D99CD1000666C50 /* AppDelegate.swift in Sources */,
 				FA337C1D1D9A0C8500666C50 /* GameOverScene.swift in Sources */,
 				FA337C1B1D9A0C8500666C50 /* AsteroidSprite.swift in Sources */,
